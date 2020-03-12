@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 class Home extends Component {
     render() {
         return (
@@ -21,7 +21,7 @@ class Home extends Component {
                                 <li>Working mock api</li>
                                 <li className="text-danger">Unread function is not yet implemented</li>
                             </ul>
-                            <a type="button" href="/notification" className="btn btn-lg btn-block btn-primary">Get started</a>
+                            <Link to="/notification" className="btn btn-lg btn-block btn-primary">Learn more</Link>
                         </div>
                     </div>
                     <div className="card shadow-sm">
@@ -35,7 +35,7 @@ class Home extends Component {
                             <li>Priority email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <button type="button" className="btn btn-lg btn-block btn-primary">Get started</button>
+                            <Link to="/swr" className="btn btn-lg btn-block btn-primary">Learn more</Link>
                         </div>
                     </div>
                     <div className="card shadow-sm">
@@ -49,7 +49,7 @@ class Home extends Component {
                             <li>Phone and email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <button type="button" className="btn btn-lg btn-block btn-primary">Contact us</button>
+                            <Link to="/notification" className="btn btn-lg btn-block btn-primary">Learn more</Link>
                         </div>
                     </div>
                     <div className="card shadow-sm">
@@ -63,7 +63,7 @@ class Home extends Component {
                             <li>Phone and email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <button type="button" className="btn btn-lg btn-block btn-primary">Contact us</button>
+                            <Link to="/notification" className="btn btn-lg btn-block btn-primary">Learn more</Link>
                         </div>
                     </div>
                 </div>
