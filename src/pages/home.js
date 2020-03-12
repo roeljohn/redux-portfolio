@@ -21,7 +21,7 @@ class Home extends Component {
                                 <li>Working mock api</li>
                                 <li className="text-danger">Unread function is not yet implemented</li>
                             </ul>
-                            <a type="button" href="/notification" className="btn btn-lg btn-block btn-primary">Get started</a>
+                            <a type="button" href="/notification" className="btn btn-lg btn-block btn-primary">Learn more</a>
                         </div>
                     </div>
                     <div className="card shadow-sm">
@@ -35,7 +35,7 @@ class Home extends Component {
                             <li>Priority email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <button type="button" className="btn btn-lg btn-block btn-primary">Get started</button>
+                            <button type="button" className="btn btn-lg btn-block btn-primary">Learn more</button>
                         </div>
                     </div>
                     <div className="card shadow-sm">
@@ -49,7 +49,7 @@ class Home extends Component {
                             <li>Phone and email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <button type="button" className="btn btn-lg btn-block btn-primary">Contact us</button>
+                            <button type="button" className="btn btn-lg btn-block btn-primary">Learn more</button>
                         </div>
                     </div>
                     <div className="card shadow-sm">
@@ -63,7 +63,7 @@ class Home extends Component {
                             <li>Phone and email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <button type="button" className="btn btn-lg btn-block btn-primary">Contact us</button>
+                            <button type="button" className="btn btn-lg btn-block btn-primary">Learn more</button>
                         </div>
                     </div>
                 </div>
