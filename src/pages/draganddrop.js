@@ -1,15 +1,82 @@
 import React, { Component } from 'react';
+import { DragDropContext } from 'react-beautiful-dnd'
+import styled from 'styled-components'
 import { connect } from 'react-redux';
 import { RJNotification, RJList } from '../components';
 import { fetchAllNotification, readNotification } from '../actions';
+import DndData from '../fake/draganddrop';
+import {RJDndColumn} from '../components'
 
+const Container = styled.div`
 
+`
 class RJDragandDrop extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
+    state = DndData
+
+    onDragEnd = result => {
+      const { destination, source, draggableId } = result
+  
+      if (!destination) {
+        return
+      }
+  
+      if (
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
+      ) {
+        return
+      }
+  
+      const start = this.state.columns[source.droppableId]
+      const finish = this.state.columns[destination.droppableId]
+  
+      if (start === finish) {
+        const newTaskIds = Array.from(start.taskIds)
+        newTaskIds.splice(source.index, 1)
+        newTaskIds.splice(destination.index, 0, draggableId)
+  
+        const newColumn = {
+          ...start,
+          taskIds: newTaskIds
+        }
+  
+        const newState = {
+          ...this.state,
+          columns: {
+            ...this.state.columns,
+            [newColumn.id]: newColumn
+          }
+        }
+  
+        this.setState(newState)
+        return
+      }
+  
+      // Moving from one list to another
+      const startTaskIds = Array.from(start.taskIds)
+      startTaskIds.splice(source.index, 1)
+      const newStart = {
+        ...start,
+        taskIds: startTaskIds
+      }
+  
+      const finishTaskIds = Array.from(finish.taskIds)
+      finishTaskIds.splice(destination.index, 0, draggableId)
+      const newFinish = {
+        ...finish,
+        taskIds: finishTaskIds
+      }
+  
+      const newState = {
+        ...this.state,
+        columns: {
+          ...this.state.columns,
+          [newStart.id]: newStart,
+          [newFinish.id]: newFinish
+        }
+      }
+      this.setState(newState)
+    }
 
   componentDidMount() {
     // this.props.notificationList();
@@ -22,141 +89,19 @@ class RJDragandDrop extends Component {
     <h3>Trello style Kanban Layout</h3>
     <h6>Stacks vertically on mobile screens</h6>
     <div class="row flex-row flex-sm-nowrap py-5">
-        <div class="col-sm-4 col-md-3">
-            <div class="card">
-                <div class="card-block">
-                    <a href="" data-toggle="dismiss" class="close">&times;</a>
-                    <h4 class="card-title text-truncate py-2">Category 1</h4>
-                    <div class="card p-2 bg-faded">
-                        <h5 class="card-title">Item</h5>
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="card">
-                <div class="card-block">
-                    <a href class="close">&times;</a>
-                    <h4 class="card-title text-truncate py-2">Category 2</h4>
-                    <div class="card p-2 bg-faded">
-                        <h5 class="card-title">Item</h5>
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <h5 class="card-title">Item</h5>
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="card">
-                <div class="card-block">
-                    <a href class="close">&times;</a>
-                    <h4 class="card-title text-truncate py-2">Category 3</h4>
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="card">
-                <div class="card-block">
-                    <a href class="close">&times;</a>
-                    <h4 class="card-title text-truncate py-2">Category 4</h4>
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <h5 class="card-title">Item</h5>
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="card">
-                <div class="card-block">
-                    <a href class="close">&times;</a>
-                    <h4 class="card-title text-truncate py-2">Category 5</h4>
-                    <div class="card p-2 bg-faded">
-                        <h5 class="card-title">Some item</h5>
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="card">
-                <div class="card-block">
-                    <a href class="close">&times;</a>
-                    <h3 class="card-title text-truncate py-2">Category 6</h3>
-                    <div class="card p-2 bg-faded">
-                        <h5 class="card-title">Another item</h5>
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="card">
-                <div class="card-block">
-                    <a href class="close">&times;</a>
-                    <h4 class="card-title text-truncate py-2">Category 7</h4>
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                    <hr />
-                    <div class="card p-2 bg-faded">
-                        <p>With supporting or additional content.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          {this.state.columnOrder.map(columnId => {
+            const column = this.state.columns[columnId]
+            const tasks = column.taskIds.map(
+              taskId => this.state.tasks[taskId]
+            )
+
+            return (
+              <RJDndColumn key={column.id} column={column} tasks={tasks} />
+            )
+          })}
+      </DragDropContext>
+
     </div>
 </div>
     );

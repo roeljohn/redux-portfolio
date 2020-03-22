@@ -63,7 +63,7 @@ class Home extends Component {
                             <li>Phone and email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <Link to="/notification" className="btn btn-lg btn-block btn-primary">Learn more</Link>
+                            <Link to="/dnd" className="btn btn-lg btn-block btn-primary">Learn more</Link>
                         </div>
                     </div>
                     <div className="card shadow-sm">
