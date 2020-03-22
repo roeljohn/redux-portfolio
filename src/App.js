@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/home';
 import Notification from './pages/notification';
 import RJSWR from './pages/rjswr';
+import RJDragandDrop from './pages/draganddrop';
 import Container from './layouts/container';
 function App() {
   return (
@@ -22,6 +23,11 @@ function App() {
           <Route exact path={`/swr`} render={(props) => (
             <Container>
               <RJSWR {...props} />
+            </Container>)
+          } />
+          <Route exact path={`/dnd`} render={(props) => (
+            <Container>
+              <RJDragandDrop {...props} />
             </Container>)
           } />
         </Switch>

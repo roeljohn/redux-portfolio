@@ -63,7 +63,21 @@ class Home extends Component {
                             <li>Phone and email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <Link to="/notification" className="btn btn-lg btn-block btn-primary">Learn more</Link>
+                            <Link to="/dnd" className="btn btn-lg btn-block btn-primary">Learn more</Link>
+                        </div>
+                    </div>
+                    <div className="card shadow-sm">
+                        <div className="card-header">
+                            <h4 className="my-0 font-weight-normal">Nivo Rock Chart Component</h4>
+                        </div>
+                        <div className="card-body">
+                            <ul className="list-unstyled mt-3 mb-4">
+                            <li>30 users included</li>
+                            <li>15 GB of storage</li>
+                            <li>Phone and email support</li>
+                            <li>Help center access</li>
+                            </ul>
+                            <Link to="" className="btn btn-lg btn-block btn-primary">Learn more</Link>
                         </div>
                     </div>
                 </div>
